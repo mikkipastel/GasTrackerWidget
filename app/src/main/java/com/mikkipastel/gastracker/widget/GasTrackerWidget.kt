@@ -1,4 +1,4 @@
-package com.mikkipastel.gastracker
+package com.mikkipastel.gastracker.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -31,6 +31,8 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
+import com.mikkipastel.gastracker.MainActivity
+import com.mikkipastel.gastracker.R
 
 class GasTrackerWidget : GlanceAppWidget() {
 

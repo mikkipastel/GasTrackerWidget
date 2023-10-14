@@ -1,4 +1,4 @@
-package com.mikkipastel.gastracker
+package com.mikkipastel.gastracker.widget
 
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
