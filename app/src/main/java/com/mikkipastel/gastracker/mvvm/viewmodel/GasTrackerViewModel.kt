@@ -7,9 +7,7 @@ import com.mikkipastel.gastracker.mvvm.model.EtherPrice
 import com.mikkipastel.gastracker.mvvm.model.GasOracle
 import com.mikkipastel.gastracker.mvvm.usecase.GetEtherLastPriceUseCase
 import com.mikkipastel.gastracker.mvvm.usecase.GetGasOracleUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class GasTrackerViewModel(
     private val getGasOracleUseCase: GetGasOracleUseCase = GetGasOracleUseCase(),
@@ -22,14 +20,12 @@ class GasTrackerViewModel(
     private var _etherPrice = MutableLiveData<EtherPrice?>()
     val etherPrice = _etherPrice
 
-    fun getGasOracle() = viewModelScope.launch(Dispatchers.Main) {
-        val response = withContext(Dispatchers.IO) {
-            getGasOracleUseCase.invoke()
-        }
+    fun getGasOracle() = viewModelScope.launch {
+        val response = getGasOracleUseCase.invoke()
         _gasOracle.value = response.result
     }
 
-    fun getEtherLastPrice() = viewModelScope.launch(Dispatchers.Main) {
+    fun getEtherLastPrice() = viewModelScope.launch {
         val response = getEtherLastPriceUseCase.invoke()
         _etherPrice.value = response.result
     }
