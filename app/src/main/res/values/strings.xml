@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Gas Tracker</string>
+
+    <string name="text_gas_low">Low</string>
+    <string name="text_gas_avg">Average</string>
+    <string name="text_gas_high">High</string>
+    <string name="text_gwei">%s gwei</string>
 </resources>

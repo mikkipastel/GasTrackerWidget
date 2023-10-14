@@ -33,6 +33,8 @@ import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.mikkipastel.gastracker.MainActivity
 import com.mikkipastel.gastracker.R
+import com.mikkipastel.gastracker.mvvm.repository.GasTrackerRepository
+import com.mikkipastel.gastracker.mvvm.viewmodel.GasTrackerViewModel
 
 class GasTrackerWidget : GlanceAppWidget() {
 
@@ -43,9 +45,7 @@ class GasTrackerWidget : GlanceAppWidget() {
         // operations.
 
         provideContent {
-            GlanceTheme {
-                setGasTrackerWidget()
-            }
+            setGasTrackerWidget()
         }
     }
 
@@ -53,6 +53,15 @@ class GasTrackerWidget : GlanceAppWidget() {
     @Preview (showBackground = true)
     @Composable
     private fun setGasTrackerWidget() {
+        val etherPrice = GasTrackerViewModel().etherPrice.value?.ethusd
+
+        GlanceTheme {
+            widgetLargeSize(etherPrice)
+        }
+    }
+
+    @Composable
+    private fun widgetLargeSize(etherPrice: String?) {
         Column(
             verticalAlignment = Alignment.CenterVertically,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -79,7 +88,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     modifier = GlanceModifier.width(32.dp).height(32.dp)
                 )
                 Text(
-                    text = "$1547.35",
+                    text = "$ $etherPrice",
                     style = TextStyle(
                         color = ColorProvider(Color.White),
                         fontSize = 24.sp,
@@ -103,38 +112,12 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "🐢",
-                        style = TextStyle(
-                            fontSize = 24.sp
-                        )
-                    )
-                    Text(
-                        text = "Low",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                    Text(
-                        text = "6 gwei",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 20.sp
-                        )
-                    )
-                    Text(
-                        text = "$ 0.12",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 16.sp
-                        )
-                    )
+                    textEmojiHeader("🐢")
+                    textLabelHeader("Low")
+                    textGwei("6")
+                    textGweiPrice("0.12")
                 }
-                Spacer(
-                    modifier = GlanceModifier.width(8.dp)
-                )
+                spacerWidth8dp()
                 Column(
                     modifier = GlanceModifier
                         .background(R.color.bsPrimary)
@@ -144,38 +127,12 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "🚶",
-                        style = TextStyle(
-                            fontSize = 24.sp
-                        )
-                    )
-                    Text(
-                        text = "Average",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                    Text(
-                        text = "6 gwei",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 20.sp
-                        )
-                    )
-                    Text(
-                        text = "$ 0.12",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 16.sp
-                        )
-                    )
+                    textEmojiHeader("🚶")
+                    textLabelHeader("Average")
+                    textGwei("6")
+                    textGweiPrice("0.12")
                 }
-                Spacer(
-                    modifier = GlanceModifier.width(8.dp)
-                )
+                spacerWidth8dp()
                 Column(
                     modifier = GlanceModifier
                         .background(R.color.bsDanger)
@@ -185,36 +142,63 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "⚡️",
-                        style = TextStyle(
-                            fontSize = 24.sp
-                        )
-                    )
-                    Text(
-                        text = "High",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                    Text(
-                        text = "6 gwei",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 20.sp
-                        )
-                    )
-                    Text(
-                        text = "$ 0.12",
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontSize = 16.sp
-                        )
-                    )
+                    textEmojiHeader("⚡️")
+                    textLabelHeader("High")
+                    textGwei("6")
+                    textGweiPrice("0.12")
                 }
             }
         }
+    }
+
+    @Composable
+    private fun textEmojiHeader(emoji: String) {
+        Text(
+            text = emoji,
+            style = TextStyle(
+                fontSize = 24.sp
+            )
+        )
+    }
+
+    @Composable
+    private fun textLabelHeader(label: String) {
+        Text(
+            text = label,
+            style = TextStyle(
+                color = ColorProvider(Color.White),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+        )
+    }
+
+    @Composable
+    private fun textGwei(gwei: String) {
+        Text(
+            text = "$gwei gwei",
+            style = TextStyle(
+                color = ColorProvider(Color.White),
+                fontSize = 20.sp
+            )
+        )
+    }
+
+    @Composable
+    private fun textGweiPrice(price: String) {
+        Text(
+            text = "$ $price",
+            style = TextStyle(
+                color = ColorProvider(Color.White),
+                fontSize = 16.sp
+            )
+        )
+    }
+
+    @Composable
+    private fun spacerWidth8dp() {
+        Spacer(
+            modifier = GlanceModifier.width(8.dp)
+        )
     }
 }

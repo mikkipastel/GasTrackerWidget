@@ -10,11 +10,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.mikkipastel.gastracker.mvvm.viewmodel.GasTrackerViewModel
 import com.mikkipastel.gastracker.ui.theme.GasTrackerTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: GasTrackerViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.apply {
+            //getGasOracle()
+            getEtherLastPrice()
+        }
         setContent {
             GasTrackerTheme {
                 // A surface container using the 'background' color from the theme
