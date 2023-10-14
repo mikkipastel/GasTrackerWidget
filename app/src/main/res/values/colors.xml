@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bsSuccess">#FF00a186</color>
+    <color name="bsPrimary">#FF0784c3</color>
+    <color name="bsDanger">#FFa52a2a</color>
 </resources>
