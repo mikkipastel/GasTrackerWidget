@@ -15,7 +15,7 @@ class GasTrackerViewModel(
 ): ViewModel() {
 
     private var _gasOracle = MutableLiveData<GasOracle?>()
-    val gasOracle = MutableLiveData<GasOracle?>()
+    val gasOracle = _gasOracle
 
     private var _etherPrice = MutableLiveData<EtherPrice?>()
     val etherPrice = _etherPrice

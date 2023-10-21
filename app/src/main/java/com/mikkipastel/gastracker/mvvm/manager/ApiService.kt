@@ -6,7 +6,7 @@ import com.mikkipastel.gastracker.mvvm.model.SuccessResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val apiKey = "YourApiKeyToken"
+const val apiKey = "231FNMTE7P324UWZ9PWUUTID4QERE9TBKZ"
 interface ApiService {
     @GET("api")
     suspend fun getGasOracle(

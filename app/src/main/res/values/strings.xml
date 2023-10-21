@@ -5,4 +5,5 @@
     <string name="text_gas_avg">Average</string>
     <string name="text_gas_high">High</string>
     <string name="text_gwei">%s gwei</string>
+    <string name="text_usd">$ %s</string>
 </resources>

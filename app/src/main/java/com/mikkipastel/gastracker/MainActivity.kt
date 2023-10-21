@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mikkipastel.gastracker.mvvm.viewmodel.GasTrackerViewModel
 import com.mikkipastel.gastracker.ui.theme.GasTrackerTheme
+import com.mikkipastel.gastracker.widget.GasTrackerWidget
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.apply {
-            //getGasOracle()
+            getGasOracle()
             getEtherLastPrice()
         }
         setContent {
@@ -51,5 +52,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     GasTrackerTheme {
         Greeting("Android")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LargeWidgetPreview() {
+    GasTrackerTheme {
+        GasTrackerWidget()
     }
 }
