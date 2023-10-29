@@ -4,6 +4,14 @@
     <string name="text_gas_low">Low</string>
     <string name="text_gas_avg">Average</string>
     <string name="text_gas_high">High</string>
+    <string name="emoji_gas_low">🐢</string>
+    <string name="emoji_gas_avg">🚶</string>
+    <string name="emoji_gas_high">⚡️</string>
     <string name="text_gwei">%s gwei</string>
     <string name="text_usd">$ %s</string>
+
+    <string name="header_ethereum">Ethereum Gas Tracker</string>
+    <string name="logo_ethereum">ETH logo</string>
+
+    <string name="refresh">refresh</string>
 </resources>

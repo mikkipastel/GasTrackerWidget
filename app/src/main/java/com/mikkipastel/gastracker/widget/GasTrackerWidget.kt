@@ -72,24 +72,50 @@ class GasTrackerWidget : GlanceAppWidget() {
     @Composable
     private fun SetGasTrackerWidget() {
         GlanceTheme {
+            val context = LocalContext.current
+            val prefs = currentState<Preferences>()
+
+            val ethusd = prefs[GasTrackerWidgetReceiver.ethusd]
+            val timestamp = prefs[GasTrackerWidgetReceiver.timestamp]
+            val lowGasPrice = prefs[GasTrackerWidgetReceiver.lowGasPrice]
+            val averageGasPrice = prefs[GasTrackerWidgetReceiver.averageGasPrice]
+            val highGasPrice = prefs[GasTrackerWidgetReceiver.highGasPrice]
+
             when (LocalSize.current) {
-                SMALL_RECTANGLE -> WidgetSmallSize()
-                MEDIUM_SQUARE -> WidgetMediumSize()
-                LARGE_RECTANGLE -> WidgetLargeSize()
+                SMALL_RECTANGLE -> WidgetSmallSize(
+                    context,
+                    ethusd,
+                    lowGasPrice,
+                    averageGasPrice,
+                    highGasPrice
+                )
+                MEDIUM_SQUARE -> WidgetMediumSize(
+                    context,
+                    ethusd,
+                    lowGasPrice,
+                    averageGasPrice,
+                    highGasPrice
+                )
+                LARGE_RECTANGLE -> WidgetLargeSize(
+                    context,
+                    ethusd,
+                    timestamp,
+                    lowGasPrice,
+                    averageGasPrice,
+                    highGasPrice
+                )
             }
         }
     }
 
     @Composable
-    private fun WidgetSmallSize() {
-        val context = LocalContext.current
-        val prefs = currentState<Preferences>()
-
-        val ethusd = prefs[GasTrackerWidgetReceiver.ethusd]
-        val lowGasPrice = prefs[GasTrackerWidgetReceiver.lowGasPrice]
-        val averageGasPrice = prefs[GasTrackerWidgetReceiver.averageGasPrice]
-        val highGasPrice = prefs[GasTrackerWidgetReceiver.highGasPrice]
-
+    private fun WidgetSmallSize(
+        context: Context,
+        ethusd: String?,
+        lowGasPrice: String?,
+        averageGasPrice: String?,
+        highGasPrice: String?
+    ) {
         Column(
             verticalAlignment = Alignment.CenterVertically,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -149,15 +175,13 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun WidgetMediumSize() {
-        val context = LocalContext.current
-        val prefs = currentState<Preferences>()
-
-        val ethusd = prefs[GasTrackerWidgetReceiver.ethusd]
-        val lowGasPrice = prefs[GasTrackerWidgetReceiver.lowGasPrice]
-        val averageGasPrice = prefs[GasTrackerWidgetReceiver.averageGasPrice]
-        val highGasPrice = prefs[GasTrackerWidgetReceiver.highGasPrice]
-
+    private fun WidgetMediumSize(
+        context: Context,
+        ethusd: String?,
+        lowGasPrice: String?,
+        averageGasPrice: String?,
+        highGasPrice: String?
+    ) {
         Column(
             verticalAlignment = Alignment.CenterVertically,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -187,7 +211,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextEmojiHeader("🐢")
+                    TextEmojiHeader(context.getString(R.string.emoji_gas_low))
                     TextGweiAndPrice(
                         context.getString(R.string.text_gwei, lowGasPrice),
                         context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, lowGasPrice))
@@ -204,7 +228,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextEmojiHeader("🚶")
+                    TextEmojiHeader(context.getString(R.string.emoji_gas_avg))
                     TextGweiAndPrice(
                         context.getString(R.string.text_gwei, averageGasPrice),
                         context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, averageGasPrice))
@@ -221,7 +245,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextEmojiHeader("⚡️")
+                    TextEmojiHeader(context.getString(R.string.emoji_gas_high))
                     TextGweiAndPrice(
                         context.getString(R.string.text_gwei, highGasPrice),
                         context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, highGasPrice))
@@ -232,16 +256,14 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun WidgetLargeSize() {
-        val context = LocalContext.current
-        val prefs = currentState<Preferences>()
-
-        val ethusd = prefs[GasTrackerWidgetReceiver.ethusd]
-        val timestamp = prefs[GasTrackerWidgetReceiver.timestamp]
-        val lowGasPrice = prefs[GasTrackerWidgetReceiver.lowGasPrice]
-        val averageGasPrice = prefs[GasTrackerWidgetReceiver.averageGasPrice]
-        val highGasPrice = prefs[GasTrackerWidgetReceiver.highGasPrice]
-
+    private fun WidgetLargeSize(
+        context: Context,
+        ethusd: String?,
+        timestamp: String?,
+        lowGasPrice: String?,
+        averageGasPrice: String?,
+        highGasPrice: String?
+    ) {
         Column(
             verticalAlignment = Alignment.CenterVertically,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -270,7 +292,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextEmojiHeader("🐢")
+                    TextEmojiHeader(context.getString(R.string.emoji_gas_low))
                     TextLabelHeader(context.getString(R.string.text_gas_low))
                     TextGwei(context.getString(R.string.text_gwei, lowGasPrice))
                     TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, lowGasPrice)))
@@ -285,7 +307,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextEmojiHeader("🚶")
+                    TextEmojiHeader(context.getString(R.string.emoji_gas_avg))
                     TextLabelHeader(context.getString(R.string.text_gas_avg))
                     TextGwei(context.getString(R.string.text_gwei, averageGasPrice))
                     TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, averageGasPrice)))
@@ -300,7 +322,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextEmojiHeader("⚡️")
+                    TextEmojiHeader(context.getString(R.string.emoji_gas_high))
                     TextLabelHeader(context.getString(R.string.text_gas_high))
                     TextGwei(context.getString(R.string.text_gwei, highGasPrice))
                     TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, highGasPrice)))
@@ -320,7 +342,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                 )
                 Image(
                     provider = ImageProvider(R.drawable.ic_refresh),
-                    contentDescription = "refresh",
+                    contentDescription = context.getString(R.string.refresh),
                     modifier = GlanceModifier.clickable {
                         // update data
                         actionRunCallback<GasTrackerCallback>()
@@ -346,7 +368,7 @@ class GasTrackerWidget : GlanceAppWidget() {
         ) {
             Image(
                 provider = ImageProvider(R.drawable.ic_eth_diamond_purple),
-                contentDescription = "ETH logo",
+                contentDescription = context.getString(R.string.logo_ethereum),
                 modifier = GlanceModifier.width(24.dp).height(24.dp)
             )
             Text(
