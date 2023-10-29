@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:minWidth="160dp"
     android:minHeight="80dp"
     android:targetCellWidth="4"
     android:targetCellHeight="2"
-    android:minResizeWidth="40dp"
+    android:minResizeWidth="160dp"
     android:minResizeHeight="40dp"
+    android:maxResizeWidth="320dp"
+    android:maxResizeHeight="80dp"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="60000"/>
+    android:updatePeriodMillis="1800000"
+    tools:targetApi="s" />
