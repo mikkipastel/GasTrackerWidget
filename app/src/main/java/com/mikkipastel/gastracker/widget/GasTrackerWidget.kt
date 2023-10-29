@@ -63,25 +63,25 @@ class GasTrackerWidget : GlanceAppWidget() {
         // operations.
 
         provideContent {
-            setGasTrackerWidget()
+            SetGasTrackerWidget()
         }
     }
 
 
     @Preview (showBackground = true)
     @Composable
-    private fun setGasTrackerWidget() {
+    private fun SetGasTrackerWidget() {
         GlanceTheme {
             when (LocalSize.current) {
-                SMALL_RECTANGLE -> widgetSmallSize()
-                MEDIUM_SQUARE -> widgetMediumSize()
-                LARGE_RECTANGLE -> widgetLargeSize()
+                SMALL_RECTANGLE -> WidgetSmallSize()
+                MEDIUM_SQUARE -> WidgetMediumSize()
+                LARGE_RECTANGLE -> WidgetLargeSize()
             }
         }
     }
 
     @Composable
-    private fun widgetSmallSize() {
+    private fun WidgetSmallSize() {
         val context = LocalContext.current
         val prefs = currentState<Preferences>()
 
@@ -101,7 +101,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     actionStartActivity<MainActivity>()
                 }
         ) {
-            etherPriceView(context, ethusd)
+            EtherPriceView(context, ethusd)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -118,9 +118,9 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textGweiPrice(lowGasPrice.toString())
+                    TextGweiPrice(lowGasPrice.toString())
                 }
-                spacerWidth8dp()
+                SpacerWidth8dp()
                 Column(
                     modifier = GlanceModifier
                         .background(R.color.bsPrimary)
@@ -130,9 +130,9 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textGweiPrice(averageGasPrice.toString())
+                    TextGweiPrice(averageGasPrice.toString())
                 }
-                spacerWidth8dp()
+                SpacerWidth8dp()
                 Column(
                     modifier = GlanceModifier
                         .background(R.color.bsDanger)
@@ -142,14 +142,14 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textGweiPrice(highGasPrice.toString())
+                    TextGweiPrice(highGasPrice.toString())
                 }
             }
         }
     }
 
     @Composable
-    private fun widgetMediumSize() {
+    private fun WidgetMediumSize() {
         val context = LocalContext.current
         val prefs = currentState<Preferences>()
 
@@ -169,7 +169,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     actionStartActivity<MainActivity>()
                 }
         ) {
-            etherPriceView(context, ethusd)
+            EtherPriceView(context, ethusd)
             Column(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -187,13 +187,13 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textEmojiHeader("🐢")
-                    textGweiAndPrice(
+                    TextEmojiHeader("🐢")
+                    TextGweiAndPrice(
                         context.getString(R.string.text_gwei, lowGasPrice),
                         context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, lowGasPrice))
                     )
                 }
-                spacerHeight8dp()
+                SpacerHeight8dp()
                 Row(
                     modifier = GlanceModifier
                         .background(R.color.bsPrimary)
@@ -204,13 +204,13 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textEmojiHeader("🚶")
-                    textGweiAndPrice(
+                    TextEmojiHeader("🚶")
+                    TextGweiAndPrice(
                         context.getString(R.string.text_gwei, averageGasPrice),
                         context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, averageGasPrice))
                     )
                 }
-                spacerHeight8dp()
+                SpacerHeight8dp()
                 Row(
                     modifier = GlanceModifier
                         .background(R.color.bsDanger)
@@ -221,8 +221,8 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textEmojiHeader("⚡️")
-                    textGweiAndPrice(
+                    TextEmojiHeader("⚡️")
+                    TextGweiAndPrice(
                         context.getString(R.string.text_gwei, highGasPrice),
                         context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, highGasPrice))
                     )
@@ -232,7 +232,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun widgetLargeSize() {
+    private fun WidgetLargeSize() {
         val context = LocalContext.current
         val prefs = currentState<Preferences>()
 
@@ -253,7 +253,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     actionStartActivity<MainActivity>()
                 }
         ) {
-            etherPriceView(context, ethusd)
+            EtherPriceView(context, ethusd)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -270,12 +270,12 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textEmojiHeader("🐢")
-                    textLabelHeader(context.getString(R.string.text_gas_low))
-                    textGwei(context.getString(R.string.text_gwei, lowGasPrice))
-                    textGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, lowGasPrice)))
+                    TextEmojiHeader("🐢")
+                    TextLabelHeader(context.getString(R.string.text_gas_low))
+                    TextGwei(context.getString(R.string.text_gwei, lowGasPrice))
+                    TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, lowGasPrice)))
                 }
-                spacerWidth8dp()
+                SpacerWidth8dp()
                 Column(
                     modifier = GlanceModifier
                         .background(R.color.bsPrimary)
@@ -285,12 +285,12 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textEmojiHeader("🚶")
-                    textLabelHeader(context.getString(R.string.text_gas_avg))
-                    textGwei(context.getString(R.string.text_gwei, averageGasPrice))
-                    textGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, averageGasPrice)))
+                    TextEmojiHeader("🚶")
+                    TextLabelHeader(context.getString(R.string.text_gas_avg))
+                    TextGwei(context.getString(R.string.text_gwei, averageGasPrice))
+                    TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, averageGasPrice)))
                 }
-                spacerWidth8dp()
+                SpacerWidth8dp()
                 Column(
                     modifier = GlanceModifier
                         .background(R.color.bsDanger)
@@ -300,10 +300,10 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    textEmojiHeader("⚡️")
-                    textLabelHeader(context.getString(R.string.text_gas_high))
-                    textGwei(context.getString(R.string.text_gwei, highGasPrice))
-                    textGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, highGasPrice)))
+                    TextEmojiHeader("⚡️")
+                    TextLabelHeader(context.getString(R.string.text_gas_high))
+                    TextGwei(context.getString(R.string.text_gwei, highGasPrice))
+                    TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, highGasPrice)))
                 }
             }
             Row(
@@ -331,7 +331,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun etherPriceView(
+    private fun EtherPriceView(
         context: Context,
         ethusd: String?
     ) {
@@ -361,7 +361,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun textEmojiHeader(emoji: String) {
+    private fun TextEmojiHeader(emoji: String) {
         Text(
             text = emoji,
             style = TextStyle(
@@ -371,7 +371,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun textLabelHeader(label: String) {
+    private fun TextLabelHeader(label: String) {
         Text(
             text = label,
             style = TextStyle(
@@ -383,7 +383,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun textGwei(gwei: String) {
+    private fun TextGwei(gwei: String) {
         Text(
             text = gwei,
             style = TextStyle(
@@ -394,7 +394,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun textGweiPrice(price: String) {
+    private fun TextGweiPrice(price: String) {
         Text(
             text = price,
             style = TextStyle(
@@ -405,7 +405,7 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun textGweiAndPrice(gwei: String, price: String) {
+    private fun TextGweiAndPrice(gwei: String, price: String) {
         Text(
             text = "$gwei ($price)",
             style = TextStyle(
@@ -416,14 +416,14 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun spacerWidth8dp() {
+    private fun SpacerWidth8dp() {
         Spacer(
             modifier = GlanceModifier.width(8.dp)
         )
     }
 
     @Composable
-    private fun spacerHeight8dp() {
+    private fun SpacerHeight8dp() {
         Spacer(
             modifier = GlanceModifier.height(8.dp)
         )

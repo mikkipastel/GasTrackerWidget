@@ -3,11 +3,12 @@ package com.mikkipastel.gastracker
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 fun String?.convertTo2Decimal(): String = String.format("%.2f", this?.toFloat())
 
 fun getCurrentTimeStamp(): String {
-    val simpleDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+    val simpleDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.forLanguageTag("TH"))
     return simpleDate.format(Date())
 }
 
