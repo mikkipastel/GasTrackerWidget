@@ -20,6 +20,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,12 +52,15 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val etherPrice = viewModel.etherPrice.collectAsState()
-                    GasTrackerView(
-                        stringResource(id = R.string.header_ethereum),
-                        etherPrice.value.ethusd.convertTo2Decimal(),
-                        viewModel.gasOracle.collectAsState().value
-                    )
+                    val etherPrice = remember { viewModel.etherPrice }
+                    val gasOracle = remember { viewModel.gasOracle }
+                    Column {
+                        GasTrackerView(
+                            stringResource(id = R.string.header_ethereum),
+                            etherPrice.collectAsState().value.ethusd.convertTo2Decimal(),
+                            gasOracle.collectAsState().value
+                        )
+                    }
                 }
             }
         }
@@ -67,15 +71,23 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     GasTrackerTheme {
-        GasTrackerView(
-            stringResource(id = R.string.header_ethereum),
-            "1234.56",
-            GasOracle(
-                lowGasPrice = "7",
-                averageGasPrice = "8",
-                highGasPrice = "9"
-            )
-        )
+        // A surface container using the 'background' color from the theme
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Column {
+                GasTrackerView(
+                    stringResource(id = R.string.header_ethereum),
+                    "1234.56",
+                    GasOracle(
+                        lowGasPrice = "7",
+                        averageGasPrice = "8",
+                        highGasPrice = "9"
+                    )
+                )
+            }
+        }
     }
 }
 
@@ -83,16 +95,17 @@ fun GreetingPreview() {
 fun GasTrackerView(headerText: String, ethusd: String, gasOracle: GasOracle) {
     Column (
         modifier = Modifier
+            .padding(8.dp)
             .background(
                 color = Color.DarkGray,
                 shape = RoundedCornerShape(16.dp)
             )
-            .fillMaxWidth()
     ) {
         HeaderText(headerText)
         TokenPriceView(ethusd)
-        SpacerHeight8dp()
-        GasPriceView(gasOracle)
+        GasPriceView(
+            gasOracle
+        )
     }
 }
 
@@ -227,10 +240,6 @@ fun TextGwei(gwei: String?) {
     )
 }
 
-@Composable
-fun SpacerHeight8dp() {
-    Spacer(modifier = Modifier.height(8.dp))
-}
 @Composable
 fun SpacerWidth8dp() {
     Spacer(modifier = Modifier.width(8.dp))
