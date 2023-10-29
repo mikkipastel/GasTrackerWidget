@@ -3,16 +3,20 @@ package com.mikkipastel.gastracker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mikkipastel.gastracker.mvvm.viewmodel.GasTrackerViewModel
 import com.mikkipastel.gastracker.ui.theme.GasTrackerTheme
-import com.mikkipastel.gastracker.widget.GasTrackerWidget
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -32,33 +36,29 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    HeaderText("Ethereum")
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
+@Preview(showBackground = true, backgroundColor = 0x000000)
 @Composable
 fun GreetingPreview() {
     GasTrackerTheme {
-        Greeting("Android")
+        Column {
+            HeaderText("Ethereum")
+        }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun LargeWidgetPreview() {
-    GasTrackerTheme {
-        GasTrackerWidget()
-    }
+fun HeaderText(headerText: String) {
+    Text(
+        text = headerText,
+        color = Color.White,
+        fontSize = 20.sp,
+        modifier = Modifier.padding(16.dp, 8.dp)
+    )
 }
