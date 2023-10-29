@@ -69,8 +69,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // For Compose Preview
-    debugImplementation("androidx.compose.ui:ui-tooling:1.5.3")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.3")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.5.4")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
 
     // For AppWidgets support
     implementation("androidx.glance:glance-appwidget:1.0.0")
