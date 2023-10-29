@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class EtherPrice(
-    @SerializedName("ethbtc") val ethbtc: String?,
-    @SerializedName("ethbtc_timestamp") val ethbtcTimestamp: String?,
-    @SerializedName("ethusd") val ethusd: String?,
-    @SerializedName("ethusd_timestamp") val ethusdTimestamp: String?,
+    @SerializedName("ethbtc") val ethbtc: String? = null,
+    @SerializedName("ethbtc_timestamp") val ethbtcTimestamp: String? = null,
+    @SerializedName("ethusd") val ethusd: String? = null,
+    @SerializedName("ethusd_timestamp") val ethusdTimestamp: String? = null,
 ): Parcelable
