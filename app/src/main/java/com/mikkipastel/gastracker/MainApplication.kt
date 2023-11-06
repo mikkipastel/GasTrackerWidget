@@ -4,6 +4,7 @@ import android.app.Application
 import com.mikkipastel.gastracker.mvvm.manager.HttpManager
 import com.mikkipastel.gastracker.mvvm.repository.GasTrackerRepository
 import com.mikkipastel.gastracker.mvvm.repository.GasTrackerRepositoryImpl
+import com.mikkipastel.gastracker.mvvm.usecase.GetAllDataUseCase
 import com.mikkipastel.gastracker.mvvm.usecase.GetEtherLastPriceUseCase
 import com.mikkipastel.gastracker.mvvm.usecase.GetGasOracleUseCase
 import com.mikkipastel.gastracker.mvvm.viewmodel.GasTrackerViewModel
@@ -27,6 +28,7 @@ class MainApplication: Application() {
                 single<GasTrackerRepository> { GasTrackerRepositoryImpl(get()) }
                 factory { GetGasOracleUseCase() }
                 factory { GetEtherLastPriceUseCase() }
+                factory { GetAllDataUseCase() }
                 viewModel { GasTrackerViewModel() }
             }
 

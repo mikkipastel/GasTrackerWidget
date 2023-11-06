@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mikkipastel.gastracker.mvvm.model.GasOracle
+import com.mikkipastel.gastracker.mvvm.usecase.GasTrackerData
 import com.mikkipastel.gastracker.mvvm.viewmodel.GasTrackerViewModel
 import com.mikkipastel.gastracker.ui.theme.GasTrackerTheme
 import com.mikkipastel.gastracker.ui.theme.bsDanger
@@ -52,13 +52,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val etherPrice = remember { viewModel.etherPrice }
-                    val gasOracle = remember { viewModel.gasOracle }
+                    val gasTrackerData = remember {
+                        viewModel.gasTrackerData
+                    }
                     Column {
                         GasTrackerView(
                             stringResource(id = R.string.header_ethereum),
-                            etherPrice.collectAsState().value.ethusd.convertTo2Decimal(),
-                            gasOracle.collectAsState().value
+                            gasTrackerData.collectAsState().value
                         )
                     }
                 }
@@ -76,14 +76,18 @@ fun GreetingPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
+            val ethPrice = "1234.56"
             Column {
                 GasTrackerView(
                     stringResource(id = R.string.header_ethereum),
-                    "1234.56",
-                    GasOracle(
-                        lowGasPrice = "7",
-                        averageGasPrice = "8",
-                        highGasPrice = "9"
+                    GasTrackerData(
+                        ethPrice,
+                        lowGasGwei = "7",
+                        averageGasGwei = "8",
+                        highGasGwei = "9",
+                        lowGasPrice = calculateGasPriceUsd(ethPrice, "7"),
+                        averageGasPrice = calculateGasPriceUsd(ethPrice, "8"),
+                        highGasPrice = calculateGasPriceUsd(ethPrice, "9")
                     )
                 )
             }
@@ -92,7 +96,7 @@ fun GreetingPreview() {
 }
 
 @Composable
-fun GasTrackerView(headerText: String, ethusd: String, gasOracle: GasOracle) {
+fun GasTrackerView(headerText: String, gasTrackerData: GasTrackerData) {
     Column (
         modifier = Modifier
             .padding(8.dp)
@@ -102,10 +106,8 @@ fun GasTrackerView(headerText: String, ethusd: String, gasOracle: GasOracle) {
             )
     ) {
         HeaderText(headerText)
-        TokenPriceView(ethusd)
-        GasPriceView(
-            gasOracle
-        )
+        TokenPriceView(gasTrackerData.ethusd)
+        GasPriceView(gasTrackerData)
     }
 }
 
@@ -151,7 +153,7 @@ fun TokenPriceView(price: String?) {
 }
 
 @Composable
-fun GasPriceView(gasOracle: GasOracle) {
+fun GasPriceView(gasTrackerData: GasTrackerData) {
     Row (
         modifier = Modifier
             .fillMaxWidth()
@@ -173,7 +175,8 @@ fun GasPriceView(gasOracle: GasOracle) {
         ) {
             TextEmoji(stringResource(id = R.string.emoji_gas_low))
             TextLabel(stringResource(id = R.string.text_gas_low))
-            TextGwei(gasOracle.lowGasPrice)
+            TextGwei(gasTrackerData.lowGasGwei)
+            TextGasPrice(price = gasTrackerData.lowGasPrice)
         }
         SpacerWidth8dp()
         // Avg
@@ -190,7 +193,8 @@ fun GasPriceView(gasOracle: GasOracle) {
         ) {
             TextEmoji(stringResource(id = R.string.emoji_gas_avg))
             TextLabel(stringResource(id = R.string.text_gas_avg))
-            TextGwei(gasOracle.averageGasPrice)
+            TextGwei(gasTrackerData.averageGasGwei)
+            TextGasPrice(price = gasTrackerData.averageGasPrice)
         }
         SpacerWidth8dp()
         // High
@@ -207,7 +211,8 @@ fun GasPriceView(gasOracle: GasOracle) {
         ) {
             TextEmoji(stringResource(id = R.string.emoji_gas_high))
             TextLabel(stringResource(id = R.string.text_gas_high))
-            TextGwei(gasOracle.highGasPrice)
+            TextGwei(gasTrackerData.highGasGwei)
+            TextGasPrice(price = gasTrackerData.highGasPrice)
         }
     }
 }
@@ -237,6 +242,16 @@ fun TextGwei(gwei: String?) {
         textAlign = TextAlign.End,
         color = Color.White,
         fontSize = 18.sp
+    )
+}
+
+@Composable
+fun TextGasPrice(price: String?) {
+    Text(
+        text = stringResource(id = R.string.text_usd, price.toString()),
+        textAlign = TextAlign.End,
+        color = Color.White,
+        fontSize = 16.sp
     )
 }
 
