@@ -398,7 +398,7 @@ class GasTrackerWidget : GlanceAppWidget() {
             text = label,
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 24.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
         )
@@ -432,7 +432,7 @@ class GasTrackerWidget : GlanceAppWidget() {
             text = "$gwei ($price)",
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 16.sp
+                fontSize = 12.sp
             )
         )
     }
