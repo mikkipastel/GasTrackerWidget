@@ -369,13 +369,13 @@ class GasTrackerWidget : GlanceAppWidget() {
             Image(
                 provider = ImageProvider(R.drawable.ic_eth_diamond_purple),
                 contentDescription = context.getString(R.string.logo_ethereum),
-                modifier = GlanceModifier.width(24.dp).height(24.dp)
+                modifier = GlanceModifier.width(22.dp).height(22.dp)
             )
             Text(
                 text = context.getString(R.string.text_usd, ethusd),
                 style = TextStyle(
                     color = ColorProvider(Color.White),
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -387,7 +387,7 @@ class GasTrackerWidget : GlanceAppWidget() {
         Text(
             text = emoji,
             style = TextStyle(
-                fontSize = 24.sp
+                fontSize = 20.sp
             )
         )
     }
@@ -410,7 +410,7 @@ class GasTrackerWidget : GlanceAppWidget() {
             text = gwei,
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 20.sp
+                fontSize = 18.sp
             )
         )
     }
