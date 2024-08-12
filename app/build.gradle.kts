@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
 }
 
@@ -52,35 +53,34 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.1")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation("androidx.activity:activity-compose:1.9.1")
+    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // For Compose Preview
-    debugImplementation("androidx.compose.ui:ui-tooling:1.5.4")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.6.8")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.6.8")
 
     // For AppWidgets support
-    implementation("androidx.glance:glance-appwidget:1.0.0")
+    implementation("androidx.glance:glance-appwidget:1.1.0")
 
     // For interop APIs with Material 2
-    implementation("androidx.glance:glance-material:1.0.0")
+    implementation("androidx.glance:glance-material:1.1.0")
 
     // For interop APIs with Material 3
-    implementation("androidx.glance:glance-material3:1.0.0")
+    implementation("androidx.glance:glance-material3:1.1.0")
 
     // For call API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -90,7 +90,7 @@ dependencies {
 
     // Crashlytics
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
 
     // Add the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
