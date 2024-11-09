@@ -40,6 +40,7 @@ import androidx.glance.unit.ColorProvider
 import com.mikkipastel.gastracker.MainActivity
 import com.mikkipastel.gastracker.R
 import com.mikkipastel.gastracker.calculateGasPriceUsd
+import com.mikkipastel.gastracker.convertTo2Decimal
 
 class GasTrackerWidget : GlanceAppWidget() {
 
@@ -77,9 +78,9 @@ class GasTrackerWidget : GlanceAppWidget() {
 
             val ethusd = prefs[GasTrackerWidgetReceiver.ethusd]
             val timestamp = prefs[GasTrackerWidgetReceiver.timestamp]
-            val lowGasPrice = prefs[GasTrackerWidgetReceiver.lowGasPrice]
-            val averageGasPrice = prefs[GasTrackerWidgetReceiver.averageGasPrice]
-            val highGasPrice = prefs[GasTrackerWidgetReceiver.highGasPrice]
+            val lowGasPrice = prefs[GasTrackerWidgetReceiver.lowGasPrice].convertTo2Decimal()
+            val averageGasPrice = prefs[GasTrackerWidgetReceiver.averageGasPrice].convertTo2Decimal()
+            val highGasPrice = prefs[GasTrackerWidgetReceiver.highGasPrice].convertTo2Decimal()
 
             when (LocalSize.current) {
                 SMALL_RECTANGLE -> WidgetSmallSize(
@@ -410,7 +411,7 @@ class GasTrackerWidget : GlanceAppWidget() {
             text = gwei,
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 18.sp
+                fontSize = 16.sp
             )
         )
     }
@@ -421,7 +422,7 @@ class GasTrackerWidget : GlanceAppWidget() {
             text = price,
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 16.sp
+                fontSize = 14.sp
             )
         )
     }
