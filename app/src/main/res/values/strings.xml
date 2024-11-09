@@ -2,7 +2,7 @@
     <string name="app_name">Gas Tracker</string>
 
     <string name="text_gas_low">Low</string>
-    <string name="text_gas_avg">Average</string>
+    <string name="text_gas_avg">Avg.</string>
     <string name="text_gas_high">High</string>
     <string name="emoji_gas_low">🐢</string>
     <string name="emoji_gas_avg">🚶</string>
