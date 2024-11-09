@@ -12,9 +12,9 @@ class GetAllDataUseCase(
         val etherPrice = getEtherLastPriceData?.ethusd.convertTo2Decimal()
 
         val getGasOracleData = getGasOracleUseCase.invoke().result
-        val lowGasGwei = getGasOracleData?.lowGasPrice
-        val averageGasGwei = getGasOracleData?.averageGasPrice
-        val highGasGwei = getGasOracleData?.highGasPrice
+        val lowGasGwei = getGasOracleData?.lowGasPrice.convertTo2Decimal()
+        val averageGasGwei = getGasOracleData?.averageGasPrice.convertTo2Decimal()
+        val highGasGwei = getGasOracleData?.highGasPrice.convertTo2Decimal()
         val lowGasPrice = calculateGasPriceUsd(etherPrice, lowGasGwei)
         val avgGasPrice = calculateGasPriceUsd(etherPrice, averageGasGwei)
         val highGasPrice = calculateGasPriceUsd(etherPrice, highGasGwei)

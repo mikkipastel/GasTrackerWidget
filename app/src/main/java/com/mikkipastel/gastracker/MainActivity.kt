@@ -237,12 +237,15 @@ fun TextLabel(label: String) {
 
 @Composable
 fun TextGwei(gwei: String?) {
-    Text(
-        text = stringResource(id = R.string.text_gwei, gwei.toString()),
-        textAlign = TextAlign.End,
-        color = Color.White,
-        fontSize = 18.sp
-    )
+    gwei?.let {
+        Text(
+            text = stringResource(id = R.string.text_gwei, it),
+            textAlign = TextAlign.End,
+            color = Color.White,
+            fontSize = 16.sp
+        )
+    }
+
 }
 
 @Composable
