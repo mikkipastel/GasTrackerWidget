@@ -43,6 +43,7 @@ class GasTrackerWidgetReceiver: GlanceAppWidgetReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
+        // refresh button
         if (intent.action == GasTrackerCallback.UPDATE_ACTION) {
             observeData(context)
         }
@@ -60,9 +61,9 @@ class GasTrackerWidgetReceiver: GlanceAppWidgetReceiver() {
                     pref.toMutablePreferences().apply {
                         this[ethusd] = etherPriceResult?.ethusd.convertTo2Decimal()
                         this[timestamp] = getCurrentTimeStamp()
-                        this[lowGasPrice] = gasOracleResult?.lowGasPrice.toString()
-                        this[averageGasPrice] = gasOracleResult?.averageGasPrice.toString()
-                        this[highGasPrice] = gasOracleResult?.highGasPrice.toString()
+                        this[lowGasPrice] = gasOracleResult?.lowGasPrice.convertTo2Decimal()
+                        this[averageGasPrice] = gasOracleResult?.averageGasPrice.convertTo2Decimal()
+                        this[highGasPrice] = gasOracleResult?.highGasPrice.convertTo2Decimal()
                     }
                 }
                 glanceAppWidget.update(context, it)
