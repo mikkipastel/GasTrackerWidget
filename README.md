@@ -1,5 +1,5 @@
 # Gas Tracker
-Android application for Ethereum gas price tracking from (Etherscan Gas Tracker)[https://etherscan.io/gastracker]. This app provides instant gas price updates directly on your home screen through a convenient widget. Stay informed about the current gas fees and optimize your transactions for maximum efficiency.
+Android application for Ethereum gas price tracking from [Etherscan Gas Tracker](https://etherscan.io/gastracker). This app provides instant gas price updates directly on your home screen through a convenient widget. Stay informed about the current gas fees and optimize your transactions for maximum efficiency.
 
 <img src="/readme/gas-tracker-app-and-widget.png" width="750">
 
