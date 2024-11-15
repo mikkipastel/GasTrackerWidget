@@ -13,13 +13,12 @@ import com.mikkipastel.gastracker.convertTo2Decimal
 import com.mikkipastel.gastracker.getCurrentTimeStamp
 import com.mikkipastel.gastracker.mvvm.usecase.GetEtherLastPriceUseCase
 import com.mikkipastel.gastracker.mvvm.usecase.GetGasOracleUseCase
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class GasTrackerWidgetReceiver: GlanceAppWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = GasTrackerWidget()
-
-    private val coroutineScope = MainScope()
 
     private val getEtherLastPriceUseCase = GetEtherLastPriceUseCase()
     private val getGasOracleUseCase = GetGasOracleUseCase()
@@ -43,13 +42,14 @@ class GasTrackerWidgetReceiver: GlanceAppWidgetReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        // refresh button
         if (intent.action == GasTrackerCallback.UPDATE_ACTION) {
             observeData(context)
         }
     }
 
     private fun observeData(context: Context) {
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+
         coroutineScope.launch {
             val etherPriceResult = getEtherLastPriceUseCase.invoke().result
             val gasOracleResult = getGasOracleUseCase.invoke().result
