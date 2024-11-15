@@ -74,10 +74,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.8")
 
     // For AppWidgets support
-    implementation("androidx.glance:glance-appwidget:1.1.0")
-
-    // For interop APIs with Material 3
-    implementation("androidx.glance:glance-material3:1.1.0")
+    implementation("androidx.glance:glance-appwidget:1.1.1")
 
     // For call API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
