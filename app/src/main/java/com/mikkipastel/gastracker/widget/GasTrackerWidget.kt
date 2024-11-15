@@ -142,7 +142,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextGweiPrice(lowGasPrice.toString())
+                    TextGweiPrice(lowGasPrice)
                 }
                 SpacerWidth8dp()
                 Column(
@@ -154,7 +154,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextGweiPrice(averageGasPrice.toString())
+                    TextGweiPrice(averageGasPrice)
                 }
                 SpacerWidth8dp()
                 Column(
@@ -166,7 +166,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TextGweiPrice(highGasPrice.toString())
+                    TextGweiPrice(highGasPrice)
                 }
             }
         }
@@ -288,7 +288,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                 ) {
                     TextEmojiHeader(context.getString(R.string.emoji_gas_low))
                     TextLabelHeader(context.getString(R.string.text_gas_low))
-                    TextGwei(context.getString(R.string.text_gwei, lowGasPrice))
+                    TextGwei(context, lowGasPrice)
                     TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, lowGasPrice)))
                 }
                 SpacerWidth8dp()
@@ -303,7 +303,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                 ) {
                     TextEmojiHeader(context.getString(R.string.emoji_gas_avg))
                     TextLabelHeader(context.getString(R.string.text_gas_avg))
-                    TextGwei(context.getString(R.string.text_gwei, averageGasPrice))
+                    TextGwei(context, averageGasPrice)
                     TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, averageGasPrice)))
                 }
                 SpacerWidth8dp()
@@ -318,7 +318,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                 ) {
                     TextEmojiHeader(context.getString(R.string.emoji_gas_high))
                     TextLabelHeader(context.getString(R.string.text_gas_high))
-                    TextGwei(context.getString(R.string.text_gwei, highGasPrice))
+                    TextGwei(context, highGasPrice)
                     TextGweiPrice(context.getString(R.string.text_usd, calculateGasPriceUsd(ethusd, highGasPrice)))
                 }
             }
@@ -396,25 +396,29 @@ class GasTrackerWidget : GlanceAppWidget() {
     }
 
     @Composable
-    private fun TextGwei(gwei: String) {
-        Text(
-            text = gwei,
-            style = TextStyle(
-                color = ColorProvider(Color.White),
-                fontSize = 16.sp
+    private fun TextGwei(context: Context, gwei: String?) {
+        gwei?.let {
+            Text(
+                text = context.getString(R.string.text_gwei, it),
+                style = TextStyle(
+                    color = ColorProvider(Color.White),
+                    fontSize = 16.sp
+                )
             )
-        )
+        }
     }
 
     @Composable
-    private fun TextGweiPrice(price: String) {
-        Text(
-            text = price,
-            style = TextStyle(
-                color = ColorProvider(Color.White),
-                fontSize = 14.sp
+    private fun TextGweiPrice(price: String?) {
+        price?.let {
+            Text(
+                text = it,
+                style = TextStyle(
+                    color = ColorProvider(Color.White),
+                    fontSize = 14.sp
+                )
             )
-        )
+        }
     }
 
     @Composable
