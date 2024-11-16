@@ -4,12 +4,13 @@ Android application for Ethereum gas price tracking from [Etherscan Gas Tracker]
 <img src="/readme/gas-tracker-app-and-widget.png" width="750">
 
 For this repo, this is a path of my session "Create Android Widget First Time by Jetpack Glance" in Android Bangkok Conference 2024
-* (blog)
-* (slide)
+* [Blog](https://www.mikkipastel.com/create-android-widget-first-time-by-jetpack-glance)
+* [slide](https://docs.google.com/presentation/d/1TWIBvNmBZ2H7ekDVb7MUE2zzGGSkkeE-ceWAIn-qdzo/edit?usp=sharing)
 * [Demo](https://youtube.com/shorts/8GNbk6ysZbE)
+* Play store (coming soon)
 
 ## Todo List
 * Handle error case
-* Test with multiple device
+* Test with multiple devices
 * Preview widget (xml)
 * Application at Play Store
