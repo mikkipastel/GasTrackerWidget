@@ -15,8 +15,8 @@ android {
         applicationId = "com.mikkipastel.gastracker"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -75,8 +75,13 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:1.6.8")
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.8")
 
+    // For Glance support
+    implementation("androidx.glance:glance:1.1.1")
     // For AppWidgets support
     implementation("androidx.glance:glance-appwidget:1.1.1")
+    // Fixed issue with Glance
+    implementation("androidx.glance:glance-appwidget-proto:1.1.1")
+    implementation("androidx.glance:glance-appwidget-external-protobuf:1.1.1")
 
     // For call API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
