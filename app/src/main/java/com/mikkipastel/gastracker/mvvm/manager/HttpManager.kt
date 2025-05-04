@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 internal class HttpManager {
 
-    private val url = "https://api.etherscan.io/"
+    private val url = "https://api.etherscan.io/v2/"
 
     private val gson = GsonBuilder()
         .create()
