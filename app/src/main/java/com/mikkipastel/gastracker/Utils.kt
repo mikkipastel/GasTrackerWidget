@@ -15,7 +15,11 @@ fun getCurrentTimeStamp(): String {
 
 fun calculateGasPriceUsd(ethPrice: String?, gasPrice: String?): String {
     val gasUnit = 21000
-    val gasEthPrice = gasUnit.times(gasPrice?.toFloat() ?: 0f) * 0.000000001
+    val gasEthPrice = gasUnit.times(gasPrice?.toFloatSafe() ?: 0f) * 0.000000001
     val result = ethPrice?.toFloat()?.times(gasEthPrice)
     return result.convertTo2Decimal()
+}
+
+fun String?.toFloatSafe(): Float? {
+    return this?.replace(",", ".")?.toFloatOrNull()
 }
