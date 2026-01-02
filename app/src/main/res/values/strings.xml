@@ -14,4 +14,7 @@
     <string name="logo_ethereum">ETH logo</string>
 
     <string name="refresh">refresh</string>
+
+    <string name="widget_description">Ethereum gas tracker</string>
+    <string name="widget_waiting">Waiting...</string>
 </resources>

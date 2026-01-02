@@ -45,8 +45,8 @@ class GasTrackerWidget : GlanceAppWidget() {
 
     companion object {
         private val SMALL_RECTANGLE = DpSize(130.dp, 100.dp)
-        private val MEDIUM_SQUARE = DpSize(130.dp, 220.dp)
-        private val LARGE_RECTANGLE = DpSize(276.dp, 220.dp)
+        private val MEDIUM_SQUARE = DpSize(130.dp, 180.dp)
+        private val LARGE_RECTANGLE = DpSize(276.dp, 180.dp)
     }
 
     override val sizeMode = SizeMode.Responsive(
@@ -331,13 +331,14 @@ class GasTrackerWidget : GlanceAppWidget() {
                     text = "updated $timestamp",
                     style = TextStyle(
                         color = ColorProvider(Color.White),
-                        fontSize = 8.sp
+                        fontSize = 10.sp
                     )
                 )
                 Image(
                     provider = ImageProvider(R.drawable.ic_refresh),
                     contentDescription = context.getString(R.string.refresh),
                     modifier = GlanceModifier.clickable(actionRunCallback<GasTrackerCallback>())
+                        .width(20.dp).height(20.dp)
                 )
             }
         }
@@ -354,19 +355,19 @@ class GasTrackerWidget : GlanceAppWidget() {
             modifier = GlanceModifier
                 .fillMaxWidth()
                 .background(Color.Gray)
-                .padding(8.dp)
+                .padding(4.dp)
                 .cornerRadius(16.dp)
         ) {
             Image(
                 provider = ImageProvider(R.drawable.ic_eth_diamond_purple),
                 contentDescription = context.getString(R.string.logo_ethereum),
-                modifier = GlanceModifier.width(22.dp).height(22.dp)
+                modifier = GlanceModifier.width(20.dp).height(20.dp)
             )
             Text(
                 text = context.getString(R.string.text_usd, ethusd),
                 style = TextStyle(
                     color = ColorProvider(Color.White),
-                    fontSize = 18.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -378,7 +379,7 @@ class GasTrackerWidget : GlanceAppWidget() {
         Text(
             text = emoji,
             style = TextStyle(
-                fontSize = 20.sp
+                fontSize = 18.sp
             )
         )
     }
@@ -403,7 +404,8 @@ class GasTrackerWidget : GlanceAppWidget() {
                 style = TextStyle(
                     color = ColorProvider(Color.White),
                     fontSize = 16.sp
-                )
+                ),
+                maxLines = 1
             )
         }
     }
@@ -415,7 +417,7 @@ class GasTrackerWidget : GlanceAppWidget() {
                 text = it,
                 style = TextStyle(
                     color = ColorProvider(Color.White),
-                    fontSize = 14.sp
+                    fontSize = 12.sp
                 )
             )
         }
