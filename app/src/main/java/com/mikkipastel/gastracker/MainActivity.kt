@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -55,7 +56,9 @@ class MainActivity : ComponentActivity() {
                     val gasTrackerData = remember {
                         viewModel.gasTrackerData
                     }
-                    Column {
+                    Column(
+                        modifier = Modifier.safeDrawingPadding()
+                    ) {
                         GasTrackerView(
                             stringResource(id = R.string.header_ethereum),
                             gasTrackerData.collectAsState().value
@@ -77,7 +80,9 @@ fun GreetingPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             val ethPrice = "1234.56"
-            Column {
+            Column(
+                modifier = Modifier.safeDrawingPadding()
+            ) {
                 GasTrackerView(
                     stringResource(id = R.string.header_ethereum),
                     GasTrackerData(
