@@ -71,7 +71,6 @@ class GasTrackerWidget : GlanceAppWidget() {
         provideContent { SetGasTrackerWidget() }
     }
 
-    @Preview (showBackground = true)
     @Composable
     private fun SetGasTrackerWidget() {
         GlanceTheme {
@@ -449,5 +448,48 @@ class GasTrackerWidget : GlanceAppWidget() {
         Spacer(
             modifier = GlanceModifier.height(8.dp)
         )
+    }
+
+    @Preview(widthDp = 276, heightDp = 180, showBackground = true)
+    @Composable
+    fun PreviewLargeWidget() {
+        GlanceTheme {
+            WidgetLargeSize(
+                context = LocalContext.current,
+                ethusd = "3049.02",
+                timestamp = "12:00 PM",
+                lowGasPrice = "0.062239705",
+                averageGasPrice = "0.062239707",
+                highGasPrice = "0.062239705"
+            )
+        }
+    }
+
+    @Preview(widthDp = 130, heightDp = 180, showBackground = true)
+    @Composable
+    fun PreviewMediumWidget() {
+        GlanceTheme {
+            WidgetMediumSize(
+                context = LocalContext.current,
+                ethusd = "3049.02",
+                lowGasPrice = "0.062239705",
+                averageGasPrice = "0.062239707",
+                highGasPrice = "0.062239705"
+            )
+        }
+    }
+
+    @Preview(widthDp = 130, heightDp = 100, showBackground = true)
+    @Composable
+    fun PreviewSmallWidget() {
+        GlanceTheme {
+            WidgetSmallSize(
+                context = LocalContext.current,
+                ethusd = "3049.02",
+                lowGasPrice = "0.062239705",
+                averageGasPrice = "0.062239707",
+                highGasPrice = "0.062239705"
+            )
+        }
     }
 }
