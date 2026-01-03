@@ -95,6 +95,43 @@ fun GreetingPreview() {
     }
 }
 
+@Preview
+@Composable
+fun WidgetLargePreview() {
+    GasTrackerTheme {
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            val ethPrice = "3049.02"
+            val lowGas = "0.08"
+            val avgGas = "0.08"
+            val highGas = "0.09"
+            val gasTrackerData = GasTrackerData(
+                ethPrice,
+                lowGasGwei = lowGas,
+                averageGasGwei = avgGas,
+                highGasGwei = highGas,
+                lowGasPrice = calculateGasPriceUsd(ethPrice, lowGas),
+                averageGasPrice = calculateGasPriceUsd(ethPrice, avgGas),
+                highGasPrice = calculateGasPriceUsd(ethPrice, highGas)
+            )
+            Column (
+                modifier = Modifier
+                    .padding(8.dp)
+                    .background(
+                        color = Color.DarkGray,
+                        shape = RoundedCornerShape(16.dp)
+                    )
+            ) {
+                TokenPriceView(gasTrackerData.ethusd)
+                GasPriceView(gasTrackerData)
+                UpdatedText()
+            }
+        }
+    }
+}
+
 @Composable
 fun GasTrackerView(headerText: String, gasTrackerData: GasTrackerData) {
     Column (
@@ -261,4 +298,25 @@ fun TextGasPrice(price: String?) {
 @Composable
 fun SpacerWidth8dp() {
     Spacer(modifier = Modifier.width(8.dp))
+}
+
+@Composable
+fun UpdatedText() {
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .padding(0.dp, 0.dp, 16.dp, 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
+    ) {
+        Text(
+            text = "updated 02/1/2026 08:17:27",
+            color = Color.White,
+            fontSize = 10.sp
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_refresh),
+            contentDescription = stringResource(id = R.string.refresh),
+            modifier = Modifier.width(20.dp).height(20.dp)
+        )
+    }
 }
