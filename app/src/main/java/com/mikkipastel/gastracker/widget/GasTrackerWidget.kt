@@ -67,6 +67,9 @@ class GasTrackerWidget : GlanceAppWidget() {
         }
     }
 
+    override suspend fun providePreview(context: Context, widgetCategory: Int) {
+        provideContent { SetGasTrackerWidget() }
+    }
 
     @Preview (showBackground = true)
     @Composable
