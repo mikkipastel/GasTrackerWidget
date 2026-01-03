@@ -2,7 +2,7 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:description="@string/widget_description"
-    android:initialLayout="@layout/widget_init_layout"
+    android:initialLayout="@layout/glance_default_loading_layout"
     android:minWidth="160dp"
     android:minHeight="80dp"
     android:targetCellWidth="4"
@@ -13,4 +13,6 @@
     android:maxResizeHeight="80dp"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800000"
+    android:previewImage="@drawable/preview_widget_large"
+    android:previewLayout="@layout/widget_preview_large_layout"
     tools:targetApi="s" />
