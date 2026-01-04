@@ -3,6 +3,7 @@ package com.mikkipastel.gastracker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.view.WindowCompat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -46,6 +47,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Enable edge-to-edge
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        
         setContent {
             GasTrackerTheme {
                 // A surface container using the 'background' color from the theme
