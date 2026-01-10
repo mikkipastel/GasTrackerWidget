@@ -14,3 +14,6 @@
 .cxx
 local.properties
 .idea
+/app/release/app-release.aab
+/gastracker-key.jks
+/upload_certificate.pem
